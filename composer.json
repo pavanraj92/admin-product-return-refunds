@@ -1,0 +1,22 @@
+{
+    "name": "admin/product_return_refunds",
+    "description": "Manages product return requests, refunds, and tracks customer return history efficiently.",
+    "type": "library",
+    "version": "1.0.0",  
+    "license": "MIT",
+    "autoload": {
+      "psr-4": {
+        "admin\\product_return_refunds\\": "src/"
+      }
+    },
+    "extra": { 
+      "laravel": {
+        "providers": [
+          "admin\\product_return_refunds\\ReturnRefundServiceProvider"
+        ]
+      }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+  }
+  
