@@ -50,20 +50,16 @@ class DebugReturnRefundsCommand extends Command
         
         // Check controller resolution
         $this->info("\n🎯 Controller Resolution:");
-       $controllers = [
-            'ReturnRefundManagerController' => 'Modules\\ReturnRefunds\\app\\Http\\Controllers\\Admin\\ReturnRefundManagerController',
-        ];
+       $controllerClass = 'Modules\\ReturnRefunds\\app\\Http\\Controllers\\Admin\\ReturnRefundManagerController';
 
-         foreach ($controllers as $label => $controllerClass) {
-            $this->info("Checking {$label}: {$controllerClass}");
-            if (class_exists($controllerClass)) {
+        if (class_exists($controllerClass)) {
             $this->info("✅ Controller class found: {$controllerClass}");
+            
             $reflection = new \ReflectionClass($controllerClass);
             $this->info("   File: " . $reflection->getFileName());
             $this->info("   Last modified: " . date('Y-m-d H:i:s', filemtime($reflection->getFileName())));
-            } else {
+        } else {
             $this->error("❌ Controller class not found: {$controllerClass}");
-            }
         }
 
        // Show current routes
