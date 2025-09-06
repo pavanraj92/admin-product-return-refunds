@@ -92,6 +92,23 @@ class PublishReturnRefundsModuleCommand extends Command
                 'use Modules\\ReturnRefunds\\app\\Models\\ReturnRefundRequest;',
                 $content
             );
+        } elseif (str_contains($sourceFile, 'Models')) {
+            // Transform admin_auth namespaces in models
+            $content = str_replace(
+                'use admin\users\Models\User;',
+                'use Modules\\Users\\app\\Models\\User;',
+                $content
+            );
+            $content = str_replace(
+                'use admin\products\Models\Product;',
+                'use Modules\\Products\\app\\Models\\Product;',
+                $content
+            );
+            $content = str_replace(
+                'use admin\products\Models\Order;',
+                'use Modules\\Products\\app\\Models\\Order;',
+                $content
+            );
         }
 
         return $content;

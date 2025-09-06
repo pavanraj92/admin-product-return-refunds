@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Config;
+use admin\products\Models\Product;
+use admin\products\Models\Order;
+use admin\users\Models\User;
 
 class ReturnRefundRequest extends Model
 {
@@ -89,30 +92,23 @@ class ReturnRefundRequest extends Model
 
     public function product()
     {
-        if (class_exists(\admin\products\Models\Product::class)) {
-            return $this->belongsTo(\admin\products\Models\Product::class);
-        }
+        return $this->belongsTo(Product::class);
     }
 
     public function user()
     {
-        if (class_exists(\admin\users\Models\User::class)) {
-            return $this->belongsTo(\admin\users\Models\User::class, 'user_id');
-        }
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function seller()
     {
-        if (class_exists(\admin\users\Models\User::class)) {
-            return $this->belongsTo(\admin\users\Models\User::class, 'seller_id');
-        }
+        return $this->belongsTo(User::class, 'seller_id');
     }
 
     public function order()
     {
-        if (class_exists(\admin\products\Models\Order::class)) {
-            return $this->belongsTo(\admin\products\Models\Order::class);
-        }
+        return $this->belongsTo(Order::class);
+
     }
 
     public static function getPerPageLimit(): int
