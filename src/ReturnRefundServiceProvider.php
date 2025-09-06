@@ -180,6 +180,21 @@ class ReturnRefundServiceProvider extends ServiceProvider
     protected function transformModelNamespaces($content)
     {
         // Any model-specific transformations
+        $content = str_replace(
+            'use admin\users\Models\User;',
+            'use Modules\\Users\\app\\Models\\User;',
+            $content
+        );
+        $content = str_replace(
+            'use admin\products\Models\Product;',
+            'use Modules\\Products\\app\\Models\\Product;',
+            $content
+        );
+        $content = str_replace(
+            'use admin\products\Models\Order;',
+            'use Modules\\Products\\app\\Models\\Order;',
+            $content
+        );
         return $content;
     }
 
